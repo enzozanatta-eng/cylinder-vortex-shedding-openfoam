@@ -1,0 +1,29 @@
+FLOW PAST A CIRCULAR CYLINDER, 2D laminar, OpenFOAM
+Domain: 10 D upstream, 30 D downstream, 20 D wide (blockage 5%) | statistics from t = 75 to 150 D/U
+
+Case             Cells Periods      St  St FFT  Cd mean  Cl amp  Cd amp
+Re100_coarse      7200      11  0.1608  0.1608   1.3773  0.3440  0.0148
+Re100_medium     28800      11  0.1678  0.1678   1.3903  0.3565  0.0120
+Re100_fine       64800      12  0.1689  0.1689   1.3904  0.3534  0.0113
+Re200_medium     28800      14  0.1969  0.1969   1.3824  0.7228  0.0487
+
+VALIDATION
+  Re = 100 (Re100_fine):
+    St      = 0.1689  vs 0.164  (+3.0%)
+    Cd mean = 1.390   vs 1.33   (+4.5%)
+    Cl amp  = 0.353   vs 0.33   (+7.1%)
+    Reference: St: Williamson (1996) experiments; Cd, Cl: Park, Kwon & Choi (1998) simulations
+  Re = 200 (Re200_medium):
+    St      = 0.1969  vs 0.196  (+0.5%)
+    Cd mean = 1.382   vs 1.34   (+3.2%)
+    Cl amp  = 0.723   vs 0.68   (+6.3%)
+    Reference: 2D simulations: Braza et al. (1986), Liu et al. (1998)
+  Williamson's experimental fit gives St = 0.1643 at Re = 100
+
+MESH INDEPENDENCE (Re = 100)
+  Re100_coarse   vs fine: St -4.79%, Cd -0.94%, Cl -2.68%
+  Re100_medium   vs fine: St -0.65%, Cd -0.00%, Cl +0.87%
+
+TIME-AVERAGED FLOW (Re = 100)
+  Cp at the front stagnation point = 1.072, base pressure Cp(180 deg) = -0.724
+  Mean recirculation length behind the cylinder L_r = 1.56 D
